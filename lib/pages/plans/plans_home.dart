@@ -46,7 +46,7 @@ class _PlansHomePageState extends State<PlansHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Plans")),
-      drawer: const NavigationDrawer(),
+      drawer: const MyNavigationDrawer(),
       body: Padding(
           padding: const EdgeInsets.all(16),
           child: InternetAuthenticationChecker(

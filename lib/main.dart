@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tpmobile/pages/boats/boats_home.dart';
 import 'package:tpmobile/pages/plans/plans_home.dart';
 import 'package:tpmobile/pages/teams/teams_home.dart';
 import 'package:tpmobile/services/authentication_repository.dart';
@@ -39,7 +38,6 @@ class _MyAppState extends State<MyApp> {
         home: const HomePage(),
         routes: {
           HomePage.route: (context) => const HomePage(),
-          BoatsHomePage.route: (context) => const BoatsHomePage(),
           PlansHomePage.route: (context) => const PlansHomePage(),
           TeamsHomePage.route: (context) => const TeamsHomePage()
         },

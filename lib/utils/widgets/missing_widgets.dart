@@ -27,8 +27,8 @@ class InternetMissing extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
       padding: const EdgeInsets.all(50.0),
       child: Center(
-          child: Column(children: const [
-        Icon(Icons.wifi_off, size: 300),
+          child: Column(children: [
+        Icon(Icons.wifi_off, size: 150),
         Text("It seems you are offline. Turn on your internet connection.",
             style: TextStyle(fontWeight: FontWeight.bold))
       ])));

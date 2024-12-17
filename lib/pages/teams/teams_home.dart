@@ -68,7 +68,7 @@ class _TeamsHomeState extends State<TeamsHomePage> {
             color: Colors.white,
           ),
         ),
-        drawer: const NavigationDrawer(),
+        drawer: const MyNavigationDrawer(),
         body: InternetAuthenticationChecker(
           authenticatedWidget: Padding(
             padding: const EdgeInsets.all(15),

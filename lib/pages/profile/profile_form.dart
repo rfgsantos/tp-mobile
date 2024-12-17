@@ -69,7 +69,8 @@ class _ProfileImageState extends State<_ProfileImage> {
           buildWhen: (previous, current) =>
               previous.profile_image != current.profile_image,
           builder: (context, state) =>
-              _file != null || state.profile_image.value != null
+              _file != null || (state.profile_image.value != null
+                  && state.profile_image.value != '')
                   ? GestureDetector(
                       onTap: _showModalBottomSheet,
                       child: Container(

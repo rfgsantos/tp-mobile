@@ -38,7 +38,7 @@ DEPENDENCIES:
   - maplibre_gl (from `.symlinks/plugins/maplibre_gl/ios`)
   - MapLibreAnnotationExtension
   - open_file_plus (from `.symlinks/plugins/open_file_plus/ios`)
-  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
 
 SPEC REPOS:
@@ -66,7 +66,7 @@ EXTERNAL SOURCES:
   open_file_plus:
     :path: ".symlinks/plugins/open_file_plus/ios"
   path_provider_foundation:
-    :path: ".symlinks/plugins/path_provider_foundation/ios"
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
   shared_preferences_ios:
     :path: ".symlinks/plugins/shared_preferences_ios/ios"
 

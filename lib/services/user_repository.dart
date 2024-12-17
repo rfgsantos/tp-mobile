@@ -30,10 +30,10 @@ class UserRepository {
 
   Future<User> saveProfile(XFile? file, User user) async {
     FormData formData = FormData.fromMap({
-      "profile_image":
-          await MultipartFile.fromFile(file?.path ?? "", filename: file?.name),
       ...user.toJson()
     });
+    formData.files.add(MapEntry("profile_image",
+        await MultipartFile.fromFile(file?.path ?? "", filename: file?.name)));
     return _dioClient.dio
         .post("${AppUrls.baseUrl}${AppUrls.cms}/users/profile/update",
             data: formData)

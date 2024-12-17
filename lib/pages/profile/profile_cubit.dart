@@ -10,12 +10,15 @@ import 'package:tpmobile/utils/validators/username_validator.dart';
 import 'dart:io';
 import '../../../../models/user.dart';
 import '../../../../services/setup_di.dart';
+import '../../services/authentication_repository.dart';
 import '../../utils/validators/email_validator.dart';
 import '../../utils/validators/file_validator.dart';
 import '../../utils/validators/simple_text_validator.dart';
 
 class ProfileFormCubit extends Cubit<ProfileFormState> {
   final UserRepository _userRepository = getIt<UserRepository>();
+  final AuthenticationRepository _authenticationRepository =
+      getIt<AuthenticationRepository>();
   User? user;
   XFile? file;
 
@@ -86,41 +89,24 @@ class ProfileFormCubit extends Cubit<ProfileFormState> {
         status: Formz.validate([phoneNumber, ...inputs])));
   }
 
-  // void changeFile(XFile file) {
-  //   this.file = file;
-  //   final image = FileValidator<String>.dirty(
-  //       base64Encode(File(file.path).readAsBytesSync()));
-  //   List<FormzInput> inputs = [...state.inputs];
-  //   inputs.remove(state.image);
-  //   emit(state.copyWith(
-  //       image: image, status: Formz.validate([image, ...inputs])));
-  // }
-
   void saveProfile() {
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
+    User user = User(
+        id: this.user?.id ?? 0,
+        email: state.email.value,
+        first_name: state.first_name.value,
+        last_name: state.last_name.value,
+        username: state.username.value);
 
-    // User user = User(
-    //   id: this.user?.id ?? 0,
-    //   email: state.email.value,
-    //   first_name: state.first_name.value,
-    //   last_name: state.last_name.value,
-    //
-    // );
-    // Team _team = Team(
-    //     name: state.name.value,
-    //     description: state.description.value,
-    //     image: state.image.value,
-    //     members: state.members.value);
-    // _teamsRepository.saveTeam(_team).then((Team value) {
-    //   if(file != null) {
-    //     addImageToTeam(value.id);
-    //   } else {
-    //     emit(state.copyWith(
-    //         status: FormzStatus.submissionSuccess,
-    //         action: TeamFormAction.saveTeam));
-    //   }
-    // }).catchError((error) {
-    //   emit(state.copyWith(status: FormzStatus.submissionFailure));
-    // });
+    _userRepository.saveProfile(file, user).then((User value) {
+      emit(state.copyWith(
+          status: FormzStatus.submissionSuccess,
+          successMessage: 'Profile saved sucessfully'));
+      _authenticationRepository.userSink.add(value);
+    }).catchError((error) {
+      emit(state.copyWith(
+          status: FormzStatus.submissionFailure,
+          errorMessage: 'Error saving profile'));
+    });
   }
 }

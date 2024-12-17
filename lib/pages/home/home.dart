@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
     _controller?.animateCamera(
         CameraUpdate.newCameraPosition(CameraPosition(
             target: LatLng(
-                userPosition.value.latitude, userPosition.value.longitude),
+                 userPosition.value.latitude, userPosition.value.longitude),
             zoom: 16,
             tilt: 50)),
         duration: const Duration(seconds: 1));
@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
               icon: const Icon(Icons.search))
         ],
       ),
-      drawer: const NavigationDrawer(),
+      drawer: const MyNavigationDrawer(),
       body: Stack(children: [
         MaplibreMap(
             initialCameraPosition:

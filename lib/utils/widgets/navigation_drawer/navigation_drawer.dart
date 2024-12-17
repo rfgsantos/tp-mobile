@@ -10,7 +10,6 @@ import 'package:tpmobile/services/internet_connection.dart';
 import 'package:tpmobile/utils/widgets/internet_authentication.dart';
 import 'package:tpmobile/utils/widgets/navigation_drawer/default_avatar.dart';
 
-import '../../../pages/boats/boats_home.dart';
 import '../../../pages/home/forms/login_form/login_form_cubit.dart';
 import '../../../pages/home/forms/register_form/register_form.dart';
 import '../../../pages/plans/plans_home.dart';
@@ -20,14 +19,14 @@ import '../../../services/authentication_repository.dart';
 import '../../../services/setup_di.dart';
 import '../../sidenav_route.dart';
 
-class NavigationDrawer extends StatefulWidget {
-  const NavigationDrawer({super.key});
+class MyNavigationDrawer extends StatefulWidget {
+  const MyNavigationDrawer({super.key});
 
   @override
   State<StatefulWidget> createState() => _NavigationDrawer();
 }
 
-class _NavigationDrawer extends State<NavigationDrawer> {
+class _NavigationDrawer extends State<MyNavigationDrawer> {
   final List<SideNavRoute> routes = [
     SideNavRoute(
         route: HomePage.route,

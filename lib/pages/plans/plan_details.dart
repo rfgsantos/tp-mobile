@@ -494,8 +494,8 @@ class _PlanActions extends StatelessWidget {
     downloadOfflineRegion(regionDefinition,
         metadata: {
           'planId': "${plan.plan.id}",
-          'plan': plan.toJson(),
-          'summary': summary.map((e) => e.toJson()).toList()
+          'plan': plan.plan.toJson(),
+          'summary': plan.summaries.map((e) => e.toJson()).toList()
         },
         onEvent: _onDownloadEvent);
   }
@@ -532,7 +532,7 @@ class _PlanActions extends StatelessWidget {
 
     if (currentRegion.isNotEmpty) {
       final Plan currentPlan =
-          Plan.fromJson(currentRegion.first.metadata['plan']['plan']);
+          Plan.fromJson(currentRegion.first.metadata['plan']);
       if (currentPlan.updated_at != null) {
         state = currentPlan.updated_at
             ?.isAtSameMomentAs(plan.plan.updated_at ?? DateTime.now());
@@ -578,6 +578,7 @@ class _PlanActions extends StatelessWidget {
                         : _removeOfflineRegion())),
             const Text("Download offline")
           ]),
+
           SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
